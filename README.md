@@ -1,4 +1,10 @@
-## - live demo hosted at
+# Meteorite Impact Visualizer
+
+## Live demo
+
+hosted at [https://meteorite-impact-visualizer-qz8x5mc4n.now.sh/](https://meteorite-impact-visualizer-qz8x5mc4n.now.sh/)
+
+//===============================================================//
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
