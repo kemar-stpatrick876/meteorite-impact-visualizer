@@ -2,7 +2,7 @@
 
 ## Live demo
 
-hosted at [https://meteorite-impact-visualizer-qz8x5mc4n.now.sh/](https://meteorite-impact-visualizer-qz8x5mc4n.now.sh/)
+hosted at [https://meteorite-impact-visualizer.now.sh/](https://meteorite-impact-visualizer.now.sh/)
 
 //===============================================================//
 
