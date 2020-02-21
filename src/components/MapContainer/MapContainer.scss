@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+
+.MapContainer {
+    border: 4px solid $color2;
+    height: 80%;
+    margin: 24px;
+    // border-radius: 5px;
+    box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+
+    &__header {
+        // border-top-left-radius: 5px;
+        // border-top-right-radius: 5px;
+        background-color: $color2;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 12px;
+    }
+}
