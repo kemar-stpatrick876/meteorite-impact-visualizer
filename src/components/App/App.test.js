@@ -1,9 +1,18 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('<App/>', () => {
+  test('should navigate to app pages', async () => {
+    render(<App />);
+
+    const container = document.querySelector('.App__page');
+    const navContainer = document.querySelector('.Header__nav');
+    // const mapPageTitle = getByText(/Impact Map/i);
+
+    expect(getByText(container, /Impact Map/i)).toBeInTheDocument();
+    getByText(navContainer, /History/i).click();
+    // await expect(getByText(container, /History/i)).toBeInTheDocument();
+    // expect(historyTitle).not.toBeInTheDocument();
+  });
 });

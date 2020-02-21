@@ -1,9 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import './App.scss';
 import { Header } from '../Header';
 import ImpactMap from '../../views/ImpactMap/ImpactMap';
 import History from '../../views/History/History';
+
+const RouteNotAvailable = ({ location }) => (
+  <div className="App__page App__page--not-available">
+    <span>
+      Invalid path: <em>{location.pathname}</em>, this page does not exist.
+    </span>
+  </div>
+);
 
 function App() {
   return (
@@ -11,12 +24,10 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path="/map">
-            <ImpactMap />
-          </Route>
-          <Route path="/history">
-            <History />
-          </Route>
+          <Route exact path="/" render={() => <Redirect to="/map" />} />
+          <Route path="/map" exact component={ImpactMap} />
+          <Route path="/history" exact component={History} />
+          <Route component={RouteNotAvailable} />
         </Switch>
       </Router>
     </div>

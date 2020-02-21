@@ -1,13 +1,28 @@
 @import '../../styles/colors.scss';
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url('https://fonts.googleapis.com/css?family=Roboto:400, 300, 500');
 
 .App {
-
   &__page {
     padding: 12px;
     background-color: $color3;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &--not-available {
+      justify-content: center;
+
+      span {
+        font-size: 50px;
+        color: #fff;
+
+        em {
+          color: #000;
+          text-decoration: underline;
+        }
+      }
+    }
 
     &__title {
       float: left;
