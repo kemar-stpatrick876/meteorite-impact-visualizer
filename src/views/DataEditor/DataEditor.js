@@ -24,7 +24,6 @@ class DataEditor extends Component {
         state: { info }
       }
     } = this.props;
-    console.log('info on load ', info);
     const {
       name,
       nametype,
@@ -99,7 +98,6 @@ class DataEditor extends Component {
       dataToUpdate[key] = dataAfterSubmit[key];
     });
     if (Object.keys(dataToUpdate).length !== 0) {
-      console.log('to up', dataToUpdate);
       dataToUpdate.id = dataFromPopup.id;
       doPutMeteoriteData(dataToUpdate);
       history.goBack();

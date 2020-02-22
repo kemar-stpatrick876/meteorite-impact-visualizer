@@ -3,6 +3,7 @@ Todo:
   ✔ validate date range @done(20-02-22 15:01)
   ✔ validate form fields @done(20-02-22 15:38)
   ✔ impliment edit data using redux @started(20-02-22 15:41) @done(20-02-22 17:56) @lasted(2h15m35s)
+  ✔ add history data to store @done(20-02-22 18:46)
   ☐ impliment history table view
   ☐ Add some testing
   ☐ add redux persistance/hydrate

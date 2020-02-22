@@ -2,7 +2,8 @@ import { formattedDate } from '../utils';
 import {
   SET_DISPLAY_RANGE,
   FETCH_METEORITE_DATA,
-  PUT_METEORITE_DATA
+  PUT_METEORITE_DATA,
+  ADD_HISTORY_RECORD
 } from '../constants';
 
 const initialState = {
@@ -34,6 +35,13 @@ function rootReducer(state = initialState, action) {
         return { ...meteorite, ...data };
       });
       return { ...state, meteorites };
+    }
+
+    case ADD_HISTORY_RECORD: {
+      const { data } = action;
+      const { history } = state;
+
+      return { ...state, history: [...history, data] };
     }
     default:
       return state;

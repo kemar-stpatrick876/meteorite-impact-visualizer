@@ -4,7 +4,8 @@ import {
   SET_DISPLAY_RANGE,
   FETCH_METEORITE_DATA,
   API_ENDPOINT,
-  PUT_METEORITE_DATA
+  PUT_METEORITE_DATA,
+  ADD_HISTORY_RECORD
 } from '../constants';
 
 export function setDisplayRange(payload) {
@@ -34,6 +35,9 @@ export const fetchAllMeteorites = () => {
 };
 
 export function putMeteoriteData(data) {
-  console.log('data in action ', data);
   return { type: PUT_METEORITE_DATA, data };
+}
+
+export function addHistoryRecord(data) {
+  return { type: ADD_HISTORY_RECORD, data };
 }

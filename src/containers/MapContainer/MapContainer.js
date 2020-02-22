@@ -48,7 +48,7 @@ class MapContainer extends Component {
   render() {
     const { dateRange } = this.state;
     const { meteorites = [] } = this.props;
-    console.log('render ', meteorites);
+    // console.log('render ', meteorites);
     return (
       <div className="MapContainer">
         <div className="MapContainer__header">
