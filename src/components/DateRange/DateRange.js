@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime';
+import moment from 'moment';
 import './DateRange.scss';
-import { formattedDate, isValidDate } from '../../utils';
+import { formattedDate } from '../../utils';
 
 export default class DateRange extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class DateRange extends Component {
       endDate: end
     };
     this.onDateFieldChange = this.onDateFieldChange.bind(this);
+    this.isValidDate = this.isValidDate.bind(this);
   }
 
   onDateFieldChange(id, momentDate) {
@@ -29,6 +31,20 @@ export default class DateRange extends Component {
     });
   }
 
+  isValidDate(currentDate, id) {
+    const { startDate, endDate } = this.state;
+    if (id === 'startDate') {
+      return (
+        moment(currentDate).isBefore(moment(endDate), 'year') &&
+        moment(currentDate).isSameOrBefore(new Date(), 'year')
+      );
+    }
+    return (
+      moment(currentDate).isAfter(moment(startDate), 'year') &&
+      moment(currentDate).isSameOrBefore(new Date(), 'year')
+    );
+  }
+
   render() {
     const { startDate, endDate } = this.state;
     return (
@@ -42,7 +58,9 @@ export default class DateRange extends Component {
             viewDate={Datetime.moment(startDate)}
             onChange={m => this.onDateFieldChange('startDate', m)}
             closeOnSelect
-            isValidDate={isValidDate}
+            isValidDate={currentDate =>
+              this.isValidDate(currentDate, 'startDate')
+            }
           />
         </div>
         <div className="DateRange__field">
@@ -52,7 +70,9 @@ export default class DateRange extends Component {
             id="endDate"
             value={endDate}
             viewDate={Datetime.moment(endDate)}
-            isValidDate={isValidDate}
+            isValidDate={currentDate =>
+              this.isValidDate(currentDate, 'endDate')
+            }
             closeOnSelect
             onChange={m => this.onDateFieldChange('endDate', m)}
           />

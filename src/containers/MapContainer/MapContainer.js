@@ -44,6 +44,7 @@ class MapContainer extends Component {
         const meteoriteImpacts = res.data.filter(
           d => has(d, 'reclong') && has(d, 'reclat')
         );
+        console.log('get req ', meteoriteImpacts);
         this.setState({ meteoriteImpacts });
       });
   }
@@ -65,6 +66,7 @@ class MapContainer extends Component {
 
   render() {
     const { meteoriteImpacts, dateRange } = this.state;
+    console.log('render ', meteoriteImpacts);
     return (
       <div className="MapContainer">
         <div className="MapContainer__header">

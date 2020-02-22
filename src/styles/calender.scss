@@ -14,7 +14,7 @@
     padding: 4px;
     margin-top: 1px;
     z-index: 99999 !important;
-    background: $color1;
+    background-color: $color2;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border: none;
     color: #fff;
@@ -37,10 +37,6 @@
     table {
         width: 100%;
         margin: 0;
-
-        &:first-of-type {
-            background-color: $color2;
-        }
     }
 
     td,

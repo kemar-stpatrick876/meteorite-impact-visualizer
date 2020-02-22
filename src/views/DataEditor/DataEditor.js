@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import uuid from 'react-uuid';
+import moment from 'moment';
 import './DataEditor.scss';
-import { formattedDate, isValidDate } from '../../utils';
+import { formattedDate } from '../../utils';
 import { REC_CLASSES } from '../../constants';
 
 class DataEditor extends Component {
@@ -58,6 +59,9 @@ class DataEditor extends Component {
     e.preventDefault();
     console.log(this.state);
   }
+
+  isValidDate = currentDate =>
+    moment(currentDate).isSameOrBefore(new Date(), 'year');
 
   goBackToMap() {
     const { history } = this.props;
@@ -138,7 +142,7 @@ class DataEditor extends Component {
               viewDate={Datetime.moment(year)}
               onChange={this.onYearFieldChange}
               closeOnSelect
-              isValidDate={isValidDate}
+              isValidDate={this.isValidDate}
             />
           </div>
           <div className="editor-form__field">
