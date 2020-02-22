@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Datetime from 'react-datetime';
 import './DateRange.scss';
+import { formattedDate, isValidDate } from '../../utils';
 
 export default class DateRange extends Component {
   constructor(props) {
@@ -14,11 +16,10 @@ export default class DateRange extends Component {
     this.onDateFieldChange = this.onDateFieldChange.bind(this);
   }
 
-  onDateFieldChange(e) {
-    const {
-      target: { id, value }
-    } = e;
-    this.setState({ [id]: value }, () => {
+  onDateFieldChange(id, momentDate) {
+    const d = new Date(momentDate.toDate().getFullYear(), 0, 1);
+
+    this.setState({ [id]: formattedDate(d) }, () => {
       const { onDateRangeChange } = this.props;
       const { startDate, endDate } = this.state;
       onDateRangeChange({
@@ -34,20 +35,26 @@ export default class DateRange extends Component {
       <div className="DateRange">
         <div className="DateRange__field">
           <label htmlFor="startDate">Start Date: </label>
-          <input
-            type="date"
+          <Datetime
+            dateFormat="YYYY"
             id="startDate"
             value={startDate}
-            onChange={this.onDateFieldChange}
+            viewDate={Datetime.moment(startDate)}
+            onChange={m => this.onDateFieldChange('startDate', m)}
+            closeOnSelect
+            isValidDate={isValidDate}
           />
         </div>
         <div className="DateRange__field">
           <label htmlFor="endDate">End Date: </label>
-          <input
-            type="date"
+          <Datetime
+            dateFormat="YYYY"
             id="endDate"
             value={endDate}
-            onChange={this.onDateFieldChange}
+            viewDate={Datetime.moment(endDate)}
+            isValidDate={isValidDate}
+            closeOnSelect
+            onChange={m => this.onDateFieldChange('endDate', m)}
           />
         </div>
       </div>

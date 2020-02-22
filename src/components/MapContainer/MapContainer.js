@@ -6,11 +6,7 @@ import './MapContainer.scss';
 import DateRange from '../DateRange/DateRange';
 import MeteoriteMap from '../MeteoriteMap/MeteoriteMap';
 import { API_ENDPOINT } from '../../constants';
-
-export const formattedDate = d => {
-  const date = d ? new Date(d) : new Date();
-  return date.toISOString().split('T')[0];
-};
+import { formattedDate } from '../../utils';
 
 export default class MapContainer extends Component {
   constructor(props) {
@@ -30,6 +26,7 @@ export default class MapContainer extends Component {
       const meteoriteImpacts = res.data.filter(
         d => has(d, 'reclong') && has(d, 'reclat')
       );
+      console.log(meteoriteImpacts);
       this.setState({ meteoriteImpacts });
     });
   }

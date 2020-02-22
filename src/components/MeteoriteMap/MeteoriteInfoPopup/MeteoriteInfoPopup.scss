@@ -1,15 +1,10 @@
 @import '../../../styles/colors.scss';
-
-.mapboxgl-popup-content {
-    background-color: $color3 !important;
-    border: 1px solid #fff;
-    padding: 0 !important;
-}
+@import '../../../styles/buttons.scss';
 
 .MeteoriteInfoPopup {
     min-height: 300px;
     min-width: 200px;
-    background-color: $color3;
+    background-color: $color1;
     display: flex;
     flex-direction: column;
 
@@ -26,13 +21,15 @@
     &__body {
         color: #fff;
         flex-basis: 90%;
+        display: flex;
+        flex-direction: column;
 
         .info-row {
             margin: 12px 6px;
 
             span {
                 &:first-of-type {
-                    color: #000;
+                    color: #eee;
                     font-weight: bold;
                 }
 
@@ -43,5 +40,25 @@
             }
         }
 
+        .edit-link {
+            @extend .btn;
+            width: 50%;
+            margin-bottom: 12px;
+        }
+
     }
+}
+
+// library overrides
+.mapboxgl-popup-content {
+    background-color: $color1 !important;
+    border: 1px solid #fff;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.mapboxgl-popup-close-button {
+    color: #fff !important;
+    top: 5px !important;
+
 }

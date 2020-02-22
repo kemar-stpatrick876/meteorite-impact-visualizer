@@ -1,11 +1,21 @@
 import React from 'react';
 import './MeteoriteInfoPopup.scss';
-import { formattedDate } from '../../MapContainer/MapContainer';
+import { Link } from 'react-router-dom';
+import { formattedDate } from '../../../utils';
 
 export default function MeteoriteInfoPopup(props) {
+  const { info } = props;
   const {
-    info: { name, recclass, mass, fall, year, nametype, reclat, reclong }
-  } = props;
+    name,
+    recclass,
+    mass,
+    fall,
+    year,
+    nametype,
+    reclat,
+    reclong,
+    id
+  } = info;
   return (
     <div className="MeteoriteInfoPopup">
       <div className="MeteoriteInfoPopup__header">{name}</div>
@@ -38,6 +48,15 @@ export default function MeteoriteInfoPopup(props) {
           <span>Latitude: </span>
           <span>{reclat}</span>
         </div>
+        <Link
+          className="edit-link"
+          to={{
+            pathname: `/edit/meteorite/${id}`,
+            state: { fromPopup: true, info }
+          }}
+        >
+          Edit
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,99 @@
+@import '../../styles/colors.scss';
+
+.App__page--editor {
+
+    .editor-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 80%;
+        width: 60%;
+        align-self: center;
+        box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+
+        background-color: $color1;
+
+        &__field {
+            display: flex;
+            flex-direction: column;
+            margin: 12px 0;
+
+            label {
+                display: block;
+                margin-bottom: 12px;
+                color: #fff;
+                font-weight: 400;
+                font-size: 18px;
+            }
+
+            input,
+            select {
+                width: 400px;
+                background-color: #050317;
+                height: 30px;
+                color: #fff;
+                font-size: 16px;
+                border: none;
+                // background: transparent;
+                //border-bottom: 2px solid #050317;
+                outline: none;
+            }
+
+            input {
+                padding: 5px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            select {
+                border-radius: 0;
+            }
+
+            .coord-label {
+                font-size: 18px;
+                font-style: italic;
+                color: #ccc;
+                text-align: center;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #ccc;
+                line-height: 0.1em;
+                margin: 10px 0 20px;
+
+                span {
+                    background: $color3;
+                    padding: 0 10px;
+                }
+            }
+
+            .coordinates {
+                display: flex;
+                width: 400px;
+                justify-content: space-between;
+
+                &__field {
+                    input {
+                        width: 150px !important;
+                    }
+                }
+            }
+        }
+
+        &__actions {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 12px;
+
+            button {
+                min-width: 100px;
+                height: 40px;
+                margin: 0 12px;
+
+            }
+        }
+
+
+    }
+}
