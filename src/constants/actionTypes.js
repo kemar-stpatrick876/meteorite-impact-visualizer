@@ -1,0 +1,1 @@
+export const SET_DISPLAY_RANGE = 'SET_DISPLAY_RANGE';

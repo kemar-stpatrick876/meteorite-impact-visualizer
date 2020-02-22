@@ -1,6 +1,7 @@
 /*!
  * https://github.com/YouCanBookMe/react-datetime
  */
+@import './colors.scss';
 
 .rdt {
     position: relative;
@@ -13,9 +14,10 @@
     padding: 4px;
     margin-top: 1px;
     z-index: 99999 !important;
-    background: #fff;
+    background: $color1;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #f9f9f9;
+    border: none;
+    color: #fff;
 }
 
 .rdtOpen .rdtPicker {
@@ -35,6 +37,10 @@
     table {
         width: 100%;
         margin: 0;
+
+        &:first-of-type {
+            background-color: $color2;
+        }
     }
 
     td,
@@ -50,13 +56,13 @@
         &.rdtHour:hover,
         &.rdtMinute:hover,
         &.rdtSecond:hover {
-            background: #eeeeee;
+            opacity: 0.6;
             cursor: pointer;
         }
     }
 
     .rdtTimeToggle:hover {
-        background: #eeeeee;
+        opacity: 0.6;
         cursor: pointer;
     }
 
@@ -130,7 +136,7 @@
     }
 
     th {
-        border-bottom: 1px solid #f9f9f9;
+        // border-bottom: 1px solid #f9f9f9;
     }
 
     .dow {
@@ -190,12 +196,12 @@
         cursor: pointer;
 
         &:hover {
-            background: #eeeeee;
+            opacity: 0.6;
         }
     }
 
     tfoot {
-        border-top: 1px solid #f9f9f9;
+        // border-top: 1px solid #f9f9f9;
     }
 
     button {
@@ -204,7 +210,7 @@
         cursor: pointer;
 
         &:hover {
-            background-color: #eee;
+            opacity: 0.6;
         }
     }
 
@@ -225,7 +231,7 @@ td {
 
     &.rdtMonth:hover,
     &.rdtYear:hover {
-        background: #eee;
+        opacity: 0.6;
     }
 }
 
@@ -270,7 +276,7 @@ td {
         user-select: none;
 
         &:hover {
-            background: #eee;
+            opacity: 0.6;
         }
     }
 

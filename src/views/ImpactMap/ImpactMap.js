@@ -1,5 +1,5 @@
 import React from 'react';
-import MapContainer from '../../components/MapContainer/MapContainer';
+import MapContainer from '../../containers/MapContainer/MapContainer';
 
 export default function ImpactMap() {
   return (
