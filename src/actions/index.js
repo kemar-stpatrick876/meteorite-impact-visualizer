@@ -3,11 +3,11 @@ import has from 'lodash/has';
 import {
   SET_DISPLAY_RANGE,
   FETCH_METEORITE_DATA,
-  API_ENDPOINT
+  API_ENDPOINT,
+  PUT_METEORITE_DATA
 } from '../constants';
 
 export function setDisplayRange(payload) {
-  console.log('payload ', payload);
   return { type: SET_DISPLAY_RANGE, payload };
 }
 
@@ -32,3 +32,8 @@ export const fetchAllMeteorites = () => {
       });
   };
 };
+
+export function putMeteoriteData(data) {
+  console.log('data in action ', data);
+  return { type: PUT_METEORITE_DATA, data };
+}

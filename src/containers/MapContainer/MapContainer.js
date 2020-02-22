@@ -9,7 +9,6 @@ import { setDisplayRange } from '../../actions';
 
 const mapStateToProps = state => {
   const { displayRange, meteorites } = state;
-  console.log('nss ', state);
   return { displayRange, meteorites };
 };
 const mapDispatchToProps = dispatch => ({

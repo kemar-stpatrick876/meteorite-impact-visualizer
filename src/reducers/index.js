@@ -1,5 +1,9 @@
 import { formattedDate } from '../utils';
-import { SET_DISPLAY_RANGE, FETCH_METEORITE_DATA } from '../constants';
+import {
+  SET_DISPLAY_RANGE,
+  FETCH_METEORITE_DATA,
+  PUT_METEORITE_DATA
+} from '../constants';
 
 const initialState = {
   displayRange: {
@@ -20,6 +24,15 @@ function rootReducer(state = initialState, action) {
     }
     case FETCH_METEORITE_DATA: {
       const { meteorites } = action;
+      return { ...state, meteorites };
+    }
+    case PUT_METEORITE_DATA: {
+      let { meteorites } = state;
+      const { data } = action;
+      meteorites = meteorites.map(meteorite => {
+        if (meteorite.id !== data.id) return meteorite;
+        return { ...meteorite, ...data };
+      });
       return { ...state, meteorites };
     }
     default:

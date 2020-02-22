@@ -3,9 +3,17 @@ import { withRouter } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import uuid from 'react-uuid';
 import moment from 'moment';
+import reduce from 'lodash/reduce';
+import isEqual from 'lodash/isEqual';
+import { connect } from 'react-redux';
 import './DataEditor.scss';
-import { formattedDate } from '../../utils';
+import { formattedDate, validateForm } from '../../utils';
 import { REC_CLASSES } from '../../constants';
+import { putMeteoriteData } from '../../actions';
+
+const mapDispatchToProps = dispatch => ({
+  doPutMeteoriteData: data => dispatch(putMeteoriteData(data))
+});
 
 class DataEditor extends Component {
   constructor(props) {
@@ -16,6 +24,7 @@ class DataEditor extends Component {
         state: { info }
       }
     } = this.props;
+    console.log('info on load ', info);
     const {
       name,
       nametype,
@@ -28,14 +37,16 @@ class DataEditor extends Component {
     } = info;
 
     this.state = {
-      name,
-      recclass,
-      mass,
-      fall,
-      year: formattedDate(year),
-      reclat,
-      reclong,
-      nametype,
+      meteorite: {
+        name,
+        recclass,
+        mass,
+        fall,
+        year: formattedDate(year),
+        reclat,
+        reclong,
+        nametype
+      },
       errors: {
         name: ''
       }
@@ -43,7 +54,8 @@ class DataEditor extends Component {
     this.onFormFieldChange = this.onFormFieldChange.bind(this);
     this.onYearFieldChange = this.onYearFieldChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.goBackToMap = this.goBackToMap.bind(this); // i think you are missing this
+    this.goBackToMap = this.goBackToMap.bind(this);
+    this.resetToOriginal = this.resetToOriginal.bind(this);
   }
 
   onFormFieldChange(e) {
@@ -51,7 +63,7 @@ class DataEditor extends Component {
       target: { id, value }
     } = e;
 
-    const { errors } = this.state;
+    const { errors, meteorite } = this.state;
     switch (id) {
       case 'name':
         errors.name = value.length < 1 ? 'Meteorite name is required!' : '';
@@ -59,18 +71,50 @@ class DataEditor extends Component {
       default:
         break;
     }
-    this.setState({ errors, [id]: value });
+    meteorite[id] = value;
+    this.setState({ errors, meteorite });
   }
 
   onYearFieldChange(momentDate) {
+    const { meteorite } = this.state;
+
     const d = new Date(momentDate.toDate().getFullYear(), 0, 1);
-    this.setState({ year: formattedDate(d) });
+    this.setState({ meteorite: { ...meteorite, year: formattedDate(d) } });
   }
 
   onFormSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+
+    const {
+      history,
+      location: {
+        state: { info: dataFromPopup }
+      },
+      doPutMeteoriteData
+    } = this.props;
+    const { meteorite: dataAfterSubmit } = this.state;
+    const dataToUpdate = {};
+    this.getUpdatedFields(dataFromPopup, dataAfterSubmit).forEach(key => {
+      if (key === 'geolocation' || key === 'id' || key === 'year') return;
+      dataToUpdate[key] = dataAfterSubmit[key];
+    });
+    if (Object.keys(dataToUpdate).length !== 0) {
+      console.log('to up', dataToUpdate);
+      dataToUpdate.id = dataFromPopup.id;
+      doPutMeteoriteData(dataToUpdate);
+      history.goBack();
+    } else {
+      history.goBack();
+    }
   }
+
+  getUpdatedFields = (dataFromPopup, dataAfterSubmit) =>
+    reduce(
+      dataFromPopup,
+      (result, value, key) =>
+        isEqual(value, dataAfterSubmit[key]) ? result : result.concat(key),
+      []
+    );
 
   isValidDate = currentDate =>
     moment(currentDate).isSameOrBefore(new Date(), 'year');
@@ -80,18 +124,33 @@ class DataEditor extends Component {
     history.goBack();
   }
 
+  resetToOriginal() {
+    const {
+      location: {
+        state: { info: dataFromPopup }
+      }
+    } = this.props;
+    this.setState({
+      meteorite: { ...this.state.meteorite, ...dataFromPopup },
+      errors: { name: '' }
+    });
+  }
+
   render() {
     const {
-      name,
-      nametype,
-      recclass,
-      mass,
-      fall,
-      year,
-      reclat,
-      reclong,
-      errors: { name: nameFieldError }
+      meteorite: {
+        name,
+        nametype,
+        recclass,
+        mass,
+        fall,
+        year,
+        reclat,
+        reclong
+      },
+      errors
     } = this.state;
+    const { name: nameFieldError } = errors;
     return (
       <div className="App__page App__page--editor">
         <div className="App__page__title">Data Editor</div>
@@ -203,10 +262,18 @@ class DataEditor extends Component {
             >
               Cancel
             </button>
-            <button type="button" className="btn">
+            <button
+              type="button"
+              className="btn"
+              onClick={this.resetToOriginal}
+            >
               Reset
             </button>
-            <button type="submit" className="btn">
+            <button
+              type="submit"
+              className="btn"
+              disabled={!validateForm(errors)}
+            >
               Save Changes
             </button>
           </div>
@@ -216,4 +283,4 @@ class DataEditor extends Component {
   }
 }
 
-export default withRouter(DataEditor);
+export default connect(null, mapDispatchToProps)(withRouter(DataEditor));

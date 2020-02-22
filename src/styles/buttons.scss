@@ -20,7 +20,13 @@
         }
     }
 
-    &:hover {
+    &:disabled {
+        cursor: not-allowed !important;
+        background-color: #ccc;
+        border: none;
+    }
+
+    &:hover:not(:disabled) {
         background-color: transparent;
         cursor: pointer !important;
     }
