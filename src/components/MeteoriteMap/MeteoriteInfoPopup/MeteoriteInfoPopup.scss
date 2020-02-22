@@ -1,0 +1,47 @@
+@import '../../../styles/colors.scss';
+
+.mapboxgl-popup-content {
+    background-color: $color3 !important;
+    border: 1px solid #fff;
+    padding: 0 !important;
+}
+
+.MeteoriteInfoPopup {
+    min-height: 300px;
+    min-width: 200px;
+    background-color: $color3;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        background-color: $color2;
+        color: #fff;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        flex-basis: 10%;
+    }
+
+    &__body {
+        color: #fff;
+        flex-basis: 90%;
+
+        .info-row {
+            margin: 12px 6px;
+
+            span {
+                &:first-of-type {
+                    color: #000;
+                    font-weight: bold;
+                }
+
+                &:last-of-type {
+                    font-weight: 300;
+                    font-style: italic;
+                }
+            }
+        }
+
+    }
+}

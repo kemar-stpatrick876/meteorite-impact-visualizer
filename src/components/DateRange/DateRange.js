@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import './DateRange.scss';
 
-const formattedDate = d => {
-  const date = d ? new Date(d) : new Date();
-  return date.toISOString().split('T')[0];
-};
-
 export default class DateRange extends Component {
   constructor(props) {
     super(props);
+    const {
+      dateRange: { start, end }
+    } = props;
     this.state = {
-      startDate: '2010-01-01',
-      endDate: formattedDate()
+      startDate: start,
+      endDate: end
     };
     this.onDateFieldChange = this.onDateFieldChange.bind(this);
   }
@@ -20,7 +18,14 @@ export default class DateRange extends Component {
     const {
       target: { id, value }
     } = e;
-    this.setState({ [id]: value });
+    this.setState({ [id]: value }, () => {
+      const { onDateRangeChange } = this.props;
+      const { startDate, endDate } = this.state;
+      onDateRangeChange({
+        start: startDate,
+        end: endDate
+      });
+    });
   }
 
   render() {
