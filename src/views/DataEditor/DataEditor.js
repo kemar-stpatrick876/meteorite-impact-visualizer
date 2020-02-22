@@ -35,7 +35,10 @@ class DataEditor extends Component {
       year: formattedDate(year),
       reclat,
       reclong,
-      nametype
+      nametype,
+      errors: {
+        name: ''
+      }
     };
     this.onFormFieldChange = this.onFormFieldChange.bind(this);
     this.onYearFieldChange = this.onYearFieldChange.bind(this);
@@ -47,7 +50,16 @@ class DataEditor extends Component {
     const {
       target: { id, value }
     } = e;
-    this.setState({ [id]: value });
+
+    const { errors } = this.state;
+    switch (id) {
+      case 'name':
+        errors.name = value.length < 1 ? 'Meteorite name is required!' : '';
+        break;
+      default:
+        break;
+    }
+    this.setState({ errors, [id]: value });
   }
 
   onYearFieldChange(momentDate) {
@@ -77,7 +89,8 @@ class DataEditor extends Component {
       fall,
       year,
       reclat,
-      reclong
+      reclong,
+      errors: { name: nameFieldError }
     } = this.state;
     return (
       <div className="App__page App__page--editor">
@@ -91,6 +104,11 @@ class DataEditor extends Component {
               value={name}
               onChange={this.onFormFieldChange}
             />
+            {nameFieldError.length > 0 && (
+              <span className="editor-form__field__error">
+                {nameFieldError}
+              </span>
+            )}
           </div>
           <div className="editor-form__field">
             <label htmlFor="nametype">Name Type:</label>
@@ -122,6 +140,7 @@ class DataEditor extends Component {
             <input
               type="number"
               id="mass"
+              min="1"
               value={mass}
               onChange={this.onFormFieldChange}
             />
@@ -155,6 +174,9 @@ class DataEditor extends Component {
                 <input
                   type="number"
                   id="reclat"
+                  min="-90"
+                  max="90"
+                  step="any"
                   value={reclat}
                   onChange={this.onFormFieldChange}
                 />
@@ -164,6 +186,9 @@ class DataEditor extends Component {
                 <input
                   type="number"
                   id="reclong"
+                  min="-180"
+                  max="180"
+                  step="any"
                   value={reclong}
                   onChange={this.onFormFieldChange}
                 />

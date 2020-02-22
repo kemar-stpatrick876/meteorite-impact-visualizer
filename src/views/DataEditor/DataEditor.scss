@@ -18,6 +18,12 @@
             flex-direction: column;
             margin: 12px 0;
 
+            &__error {
+                color: $color5;
+                font-weight: 300;
+                font-style: italic;
+            }
+
             label {
                 display: block;
                 margin-bottom: 12px;
