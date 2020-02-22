@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import moment from 'moment';
-import has from 'lodash/has';
 import { connect } from 'react-redux';
-import { cacheAdapterEnhancer } from 'axios-extensions';
 
 import './MapContainer.scss';
 import DateRange from '../../components/DateRange/DateRange';
 import MeteoriteMap from '../../components/MeteoriteMap/MeteoriteMap';
-import { API_ENDPOINT } from '../../constants';
 import { setDisplayRange } from '../../actions';
 
 const mapStateToProps = state => {
-  return { displayRange: state.displayRange };
+  const { displayRange, meteorites } = state;
+  console.log('nss ', state);
+  return { displayRange, meteorites };
 };
 const mapDispatchToProps = dispatch => ({
   doSetDisplayRange: dateRange => dispatch(setDisplayRange(dateRange))
@@ -25,28 +23,12 @@ class MapContainer extends Component {
       displayRange: { start, end }
     } = props;
     this.state = {
-      meteoriteImpacts: [],
       dateRange: {
         start,
         end
       }
     };
     this.onDateRangeChange = this.onDateRangeChange.bind(this);
-  }
-
-  componentDidMount() {
-    axios
-      .create({
-        adapter: cacheAdapterEnhancer(axios.defaults.adapter)
-      })
-      .get(API_ENDPOINT)
-      .then(res => {
-        const meteoriteImpacts = res.data.filter(
-          d => has(d, 'reclong') && has(d, 'reclat')
-        );
-        console.log('get req ', meteoriteImpacts);
-        this.setState({ meteoriteImpacts });
-      });
   }
 
   onDateRangeChange(dateRange) {
@@ -65,8 +47,9 @@ class MapContainer extends Component {
   }
 
   render() {
-    const { meteoriteImpacts, dateRange } = this.state;
-    console.log('render ', meteoriteImpacts);
+    const { dateRange } = this.state;
+    const { meteorites = [] } = this.props;
+    console.log('render ', meteorites);
     return (
       <div className="MapContainer">
         <div className="MapContainer__header">
@@ -75,9 +58,7 @@ class MapContainer extends Component {
             onDateRangeChange={this.onDateRangeChange}
           />
         </div>
-        <MeteoriteMap
-          meteoriteImpacts={this.dateRangeSeries(meteoriteImpacts)}
-        />
+        <MeteoriteMap meteoriteImpacts={this.dateRangeSeries(meteorites)} />
       </div>
     );
   }

@@ -1,11 +1,12 @@
 import { formattedDate } from '../utils';
-import { SET_DISPLAY_RANGE } from '../constants';
+import { SET_DISPLAY_RANGE, FETCH_METEORITE_DATA } from '../constants';
 
 const initialState = {
   displayRange: {
     start: '2010-01-01',
     end: formattedDate()
-  }
+  },
+  history: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -15,10 +16,12 @@ function rootReducer(state = initialState, action) {
       const {
         payload: { start, end }
       } = action;
-      console.log('in reduce ', action, start, end);
       return { ...state, displayRange: { start, end } };
     }
-
+    case FETCH_METEORITE_DATA: {
+      const { meteorites } = action;
+      return { ...state, meteorites };
+    }
     default:
       return state;
   }
