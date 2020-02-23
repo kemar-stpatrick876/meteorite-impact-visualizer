@@ -16,8 +16,9 @@ const mapDispatchToProps = dispatch => ({
   doFetchAllMeteorites: () => dispatch(fetchAllMeteorites())
 });
 
-class MapContainer extends Component {
+export class MapContainer extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     const {
       displayRange: { start, end }

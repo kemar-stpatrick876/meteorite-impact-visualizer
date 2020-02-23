@@ -12,6 +12,7 @@ describe('MeteoriteMap.js', () => {
   test('should render', () => {
     expect(wrapper.exists()).toBe(true);
   });
+
   test('should show popup', () => {
     const instance = wrapper.instance();
 
