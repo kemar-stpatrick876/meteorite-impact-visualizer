@@ -3,22 +3,12 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import MeteoriteInfoPopup from './MeteoriteInfoPopup';
 import { formattedDate } from '../../utils';
+import { MOCK_DATA } from '../../constants';
 
 Enzyme.configure({ adapter: new Adapter() });
-const data = {
-  name: 'Aachen',
-  id: '1',
-  nametype: 'Valid',
-  recclass: 'L5',
-  mass: '21',
-  fall: 'Fell',
-  year: '1880-01-01T00:00:00.000',
-  reclat: '50.775000',
-  reclong: '6.083330',
-  geolocation: { type: 'Point', coordinates: [6.08333, 50.775] }
-};
 
-describe.only('MeteoriteInfoPopup.js', () => {
+describe('MeteoriteInfoPopup.js', () => {
+  const data = MOCK_DATA[0];
   const wrapper = shallow(<MeteoriteInfoPopup info={data} />);
 
   test('should render', () => {

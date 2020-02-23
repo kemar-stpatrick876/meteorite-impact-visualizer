@@ -31,7 +31,6 @@ export default class MeteoriteMap extends Component {
   };
 
   onClickMarker = meteorite => {
-    console.log(meteorite);
     this.setState({ popupInfo: meteorite });
   };
 

@@ -1,4 +1,5 @@
 export * from './actionTypes';
+export * from './mocks';
 export const MAPBOX_TOKEN =
   'pk.eyJ1Ijoia2VtYXJiZWxsIiwiYSI6ImNrNnd2M2ZpYzA2Y3EzbG95NzRzMmtyYTUifQ.iXMHPxIffEPmQE1UWxeV_w';
 
