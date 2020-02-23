@@ -17,6 +17,7 @@ export default class MeteoritePin extends PureComponent {
         key={`marker-${meteorite.id}`}
         longitude={parseFloat(meteorite.reclong)}
         latitude={parseFloat(meteorite.reclat)}
+        className="meteorite-map-pin"
       >
         <svg
           height={SIZE}
