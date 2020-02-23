@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import uuid from 'react-uuid';
 import './History.scss';
+import { formattedDate } from '../../utils';
 
 const mapStateToProps = state => {
   const { history } = state;
@@ -9,6 +11,10 @@ const mapStateToProps = state => {
 };
 function History(props) {
   const { history } = props;
+  const formatDataColumn = (field, data) => {
+    const displayValue = field && field === 'year' ? formattedDate(data) : data;
+    return `${field} => ${displayValue}`;
+  };
   let bodyContent = (
     <tr className="history-table__row history-table__row--no-records">
       <td colSpan="4">
@@ -16,20 +22,19 @@ function History(props) {
       </td>
     </tr>
   );
-  console.log(history);
   if (history.length > 0) {
     bodyContent = history.map(record => {
-      const { id, timestamp, original, updated } = record;
+      const { id, timestamp, original, updated, field } = record;
       return (
-        <tr className="history-table__row" key={id}>
+        <tr className="history-table__row" key={uuid()}>
           <td>
             {moment(timestamp)
               .format('MM/DD/YY h:mm a')
               .toString()}
           </td>
           <td>{id}</td>
-          <td>{original}</td>
-          <td>{updated}</td>
+          <td>{formatDataColumn(field, original)}</td>
+          <td>{formatDataColumn(field, updated)}</td>
         </tr>
       );
     });

@@ -6,8 +6,9 @@ Todo:
   ✔ add history data to store @done(20-02-22 18:46)
   ✔ impliment history table view @done(20-02-22 19:37)
   ✔ add redux persistance/hydrate @done(20-02-22 21:03)
-  ☐ fix edit year
+  ✔ fix edit year @done(20-02-22 22:05)
   ☐ add simple status notofication
   ☐ Add some testing
   ☐ Oprionally ad cloud function to persist history.
-  
+  ☐ cleanup unused packages
+  ☐ improve commenting

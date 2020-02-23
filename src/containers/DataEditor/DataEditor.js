@@ -93,8 +93,11 @@ class DataEditor extends Component {
     } = this.props;
     const { meteorite: dataAfterSubmit } = this.state;
     const dataToUpdate = {};
-    this.getUpdatedFields(dataFromPopup, dataAfterSubmit).forEach(key => {
-      if (key === 'geolocation' || key === 'id' || key === 'year') return;
+    this.getUpdatedFields(
+      this.cleanDataForComparison(dataFromPopup),
+      this.cleanDataForComparison(dataAfterSubmit)
+    ).forEach(key => {
+      if (key === 'geolocation' || key === 'id') return;
       dataToUpdate[key] = dataAfterSubmit[key];
     });
     if (Object.keys(dataToUpdate).length !== 0) {
@@ -105,6 +108,12 @@ class DataEditor extends Component {
       history.goBack();
     }
   }
+
+  cleanDataForComparison = data => {
+    const dataCopy = { ...data };
+    dataCopy.year = moment(data.year).format();
+    return dataCopy;
+  };
 
   getUpdatedFields = (dataFromPopup, dataAfterSubmit) =>
     reduce(
@@ -128,8 +137,9 @@ class DataEditor extends Component {
         state: { info: dataFromPopup }
       }
     } = this.props;
+    const { state: meteorite } = this;
     this.setState({
-      meteorite: { ...this.state.meteorite, ...dataFromPopup },
+      meteorite: { ...meteorite, ...dataFromPopup },
       errors: { name: '' }
     });
   }
@@ -183,9 +193,10 @@ class DataEditor extends Component {
             <select
               value={recclass}
               id="recclass"
+              name="recclass"
               onChange={this.onFormFieldChange}
             >
-              {REC_CLASSES.map(rc => (
+              {REC_CLASSES.sort().map(rc => (
                 <option key={uuid()} value={rc}>
                   {rc}
                 </option>

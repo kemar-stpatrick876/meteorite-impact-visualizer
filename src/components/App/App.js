@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 import './App.scss';
 import { Header } from '../Header';
-import ImpactMap from '../../views/ImpactMap/ImpactMap';
-import History from '../../views/History/History';
-import DataEditor from '../../views/DataEditor/DataEditor';
+import ImpactMap from '../ImpactMap/ImpactMap';
+import History from '../../containers/History/History';
+import DataEditor from '../../containers/DataEditor/DataEditor';
 
 const RouteNotAvailable = ({ location }) => (
   <div className="App__page App__page--not-available">
