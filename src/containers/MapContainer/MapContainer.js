@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => ({
 
 export class MapContainer extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     const {
       displayRange: { start, end }
