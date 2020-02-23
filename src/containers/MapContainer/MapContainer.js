@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import './MapContainer.scss';
 import DateRange from '../../components/DateRange/DateRange';
 import MeteoriteMap from '../../components/MeteoriteMap/MeteoriteMap';
-import { setDisplayRange } from '../../actions';
+import { setDisplayRange, fetchAllMeteorites } from '../../actions';
 
 const mapStateToProps = state => {
   const { displayRange, meteorites } = state;
   return { displayRange, meteorites };
 };
 const mapDispatchToProps = dispatch => ({
-  doSetDisplayRange: dateRange => dispatch(setDisplayRange(dateRange))
+  doSetDisplayRange: dateRange => dispatch(setDisplayRange(dateRange)),
+  doFetchAllMeteorites: () => dispatch(fetchAllMeteorites())
 });
 
 class MapContainer extends Component {
@@ -28,6 +29,13 @@ class MapContainer extends Component {
       }
     };
     this.onDateRangeChange = this.onDateRangeChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { meteorites, doFetchAllMeteorites } = this.props;
+    if (!meteorites) {
+      doFetchAllMeteorites();
+    }
   }
 
   onDateRangeChange(dateRange) {

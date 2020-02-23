@@ -5,9 +5,9 @@ Todo:
   ✔ impliment edit data using redux @started(20-02-22 15:41) @done(20-02-22 17:56) @lasted(2h15m35s)
   ✔ add history data to store @done(20-02-22 18:46)
   ✔ impliment history table view @done(20-02-22 19:37)
-  ☐ add redux persistance/hydrate
+  ✔ add redux persistance/hydrate @done(20-02-22 21:03)
   ☐ fix edit year
   ☐ add simple status notofication
   ☐ Add some testing
-
+  ☐ Oprionally ad cloud function to persist history.
   

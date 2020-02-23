@@ -1,17 +1,23 @@
 // src/js/store/index.js
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from '../reducers/index';
-import { fetchAllMeteorites } from '../actions';
 import { addEditHistoryMiddleware } from '../middleware';
 
+const persistConfig = {
+  key: 'meteorites',
+  storage
+};
+
 const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   storeEnhancers(applyMiddleware(thunk, addEditHistoryMiddleware))
 );
-
-store.dispatch(fetchAllMeteorites());
+export const persistor = persistStore(store);
 
 export default store;
