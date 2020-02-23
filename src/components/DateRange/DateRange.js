@@ -60,10 +60,11 @@ export default class DateRange extends Component {
           <Datetime
             dateFormat="YYYY"
             id="startDate"
+            className="DateRange__field__input"
             value={startDate}
             viewDate={Datetime.moment(startDate)}
             onChange={m => this.onDateFieldChange('startDate', m)}
-            inputProps={{ onKeyDown: this.onKeyDown }}
+            inputProps={{ onKeyDown: this.onKeyDown, id: 'startDateInput' }}
             closeOnSelect
             closeOnTab
             isValidDate={currentDate =>
@@ -78,6 +79,7 @@ export default class DateRange extends Component {
             dateFormat="YYYY"
             id="endDate"
             value={endDate}
+            className="DateRange__field__input"
             viewDate={Datetime.moment(endDate)}
             isValidDate={currentDate =>
               this.isValidDate(currentDate, 'endDate')
