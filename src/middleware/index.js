@@ -11,8 +11,8 @@ export const addEditHistoryMiddleware = ({ dispatch, getState }) => {
         const { data } = action;
         const dataCp = { ...data };
         const { id } = dataCp;
-
         const current = find(getState().meteorites, ['id', id]);
+
         delete dataCp.id;
 
         forOwn(dataCp, (value, key) => {

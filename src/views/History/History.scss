@@ -1,0 +1,37 @@
+@import '../../styles/colors.scss';
+
+.App__page--history {
+    .history-table {
+        color: #fff;
+        background-color: $color2;
+        margin: 73px 24px;
+
+        thead {
+
+            th {
+                padding: 12px;
+            }
+        }
+
+        tbody {
+            background-color: $color1;
+        }
+
+        &__row {
+            td {
+                padding: 12px;
+                text-align: center;
+                border: 1px solid $color2;
+
+            }
+        }
+
+        &__row--no-records {
+            td {
+                font-size: 24px;
+                font-style: italic;
+                font-weight: 200;
+            }
+        }
+    }
+}
