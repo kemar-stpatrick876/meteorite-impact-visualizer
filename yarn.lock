@@ -9576,6 +9576,13 @@ react-map-gl@^5.2.3:
     react-virtualized-auto-sizer "^1.0.2"
     viewport-mercator-project "^6.2.3 || ^7.0.1"
 
+react-notifications-component@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-2.3.0.tgz#37b0cfbd908e37cc1ad163e1c675e8235dc6fdbd"
+  integrity sha512-zLVpHuefVTetS3SAidVpx5hn6TgipQkh6MZLjqLFQ/3D93Fti9+PRmM3zIea6aM10zexJXMp4AMg5aouV029YQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-onclickoutside@^6.5.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz#a54bc317ae8cf6131a5d78acea55a11067f37a1f"
@@ -10526,6 +10533,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+
+simple-react-notifications@^1.2.15:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/simple-react-notifications/-/simple-react-notifications-1.2.15.tgz#f7fe0d07df2ab9b0f1107efc8cfb4af5adada94c"
+  integrity sha512-swX7HR5uNPVrxXVzeccz0pjAxU9KMmcbWiWYVAtDaTp7aJpxTktjrUQaAET8To766HZBsLCR49I66DXkWrMmEg==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"

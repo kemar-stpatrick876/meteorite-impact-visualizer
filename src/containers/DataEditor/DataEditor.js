@@ -81,6 +81,10 @@ class DataEditor extends Component {
     this.setState({ meteorite: { ...meteorite, year: formattedDate(d) } });
   }
 
+  onKeyDown = e => {
+    e.preventDefault();
+  };
+
   onFormSubmit(e) {
     e.preventDefault();
 
@@ -222,15 +226,19 @@ class DataEditor extends Component {
           </div>
           <div className="editor-form__field">
             <label htmlFor="year">Year: </label>
-            <Datetime
-              dateFormat="YYYY"
-              id="year"
-              value={year}
-              viewDate={Datetime.moment(year)}
-              onChange={this.onYearFieldChange}
-              closeOnSelect
-              isValidDate={this.isValidDate}
-            />
+            <div className="date-picker">
+              <i className="material-icons">calendar_today</i>
+              <Datetime
+                dateFormat="YYYY"
+                id="year"
+                value={year}
+                viewDate={Datetime.moment(year)}
+                onChange={this.onYearFieldChange}
+                inputProps={{ onKeyDown: this.onKeyDown }}
+                closeOnSelect
+                isValidDate={this.isValidDate}
+              />
+            </div>
           </div>
           <div className="editor-form__field">
             <h2 className="coord-label">

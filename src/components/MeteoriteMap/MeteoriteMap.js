@@ -6,9 +6,9 @@ import MapGL, {
   ScaleControl
 } from 'react-map-gl';
 import { MAPBOX_TOKEN } from '../../constants';
-import MeteoritePin from './MeteoritePin';
+import MeteoritePin from '../MeteoritePin/MeteoritePin';
 import './MeteoriteMap.scss';
-import MeteoriteInfoPopup from './MeteoriteInfoPopup/MeteoriteInfoPopup';
+import MeteoriteInfoPopup from '../MeteoriteInfoPopup/MeteoriteInfoPopup';
 
 export default class MeteoriteMap extends Component {
   constructor(props) {

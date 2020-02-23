@@ -16,6 +16,7 @@ export default class DateRange extends Component {
     };
     this.onDateFieldChange = this.onDateFieldChange.bind(this);
     this.isValidDate = this.isValidDate.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   onDateFieldChange(id, momentDate) {
@@ -30,6 +31,10 @@ export default class DateRange extends Component {
       });
     });
   }
+
+  onKeyDown = e => {
+    e.preventDefault();
+  };
 
   isValidDate(currentDate, id) {
     const { startDate, endDate } = this.state;
@@ -50,21 +55,25 @@ export default class DateRange extends Component {
     return (
       <div className="DateRange">
         <div className="DateRange__field">
-          <label htmlFor="startDate">Start Date: </label>
+          {/* <label htmlFor="startDate">Start Date: </label> */}
+          <i className="material-icons">calendar_today</i>
           <Datetime
             dateFormat="YYYY"
             id="startDate"
             value={startDate}
             viewDate={Datetime.moment(startDate)}
             onChange={m => this.onDateFieldChange('startDate', m)}
+            inputProps={{ onKeyDown: this.onKeyDown }}
             closeOnSelect
+            closeOnTab
             isValidDate={currentDate =>
               this.isValidDate(currentDate, 'startDate')
             }
           />
         </div>
         <div className="DateRange__field">
-          <label htmlFor="endDate">End Date: </label>
+          {/* <label htmlFor="endDate">End Date: </label> */}
+          <i className="material-icons">calendar_today</i>
           <Datetime
             dateFormat="YYYY"
             id="endDate"
@@ -73,7 +82,9 @@ export default class DateRange extends Component {
             isValidDate={currentDate =>
               this.isValidDate(currentDate, 'endDate')
             }
+            inputProps={{ onKeyDown: this.onKeyDown }}
             closeOnSelect
+            closeOnTab
             onChange={m => this.onDateFieldChange('endDate', m)}
           />
         </div>

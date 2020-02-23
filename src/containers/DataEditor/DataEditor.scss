@@ -10,6 +10,7 @@
         width: 60%;
         align-self: center;
         box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+        padding-bottom: 20px;
 
         background-color: $color1;
 
@@ -32,6 +33,24 @@
                 font-size: 18px;
             }
 
+            .date-picker {
+                display: flex;
+                background-color: $color2;
+                padding: 6px;
+
+                i {
+                    color: #fff;
+                    font-size: 12px;
+                    align-self: center;
+
+                }
+
+                input {
+                    padding: 6px;
+                    width: 379px;
+                }
+            }
+
             input,
             select {
                 width: 400px;
@@ -40,17 +59,24 @@
                 color: #fff;
                 font-size: 16px;
                 border: none;
-                // background: transparent;
-                //border-bottom: 2px solid #050317;
                 outline: none;
-            }
-
-            input {
-                padding: 5px;
+                padding: 20px 6px;
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
             }
+
+            select {
+                padding: 0px 7px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-color: #050317;
+                color: white;
+                outline: none;
+            }
+
+
 
             select {
                 border-radius: 0;

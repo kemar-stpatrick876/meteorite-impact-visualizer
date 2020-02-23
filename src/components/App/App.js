@@ -5,6 +5,8 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import './App.scss';
 import { Header } from '../Header';
 import ImpactMap from '../ImpactMap/ImpactMap';
@@ -22,6 +24,7 @@ const RouteNotAvailable = ({ location }) => (
 function App() {
   return (
     <div className="App">
+      <ReactNotification />
       <Router>
         <Header />
         <Switch>

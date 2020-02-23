@@ -7,7 +7,7 @@ Todo:
   ✔ impliment history table view @done(20-02-22 19:37)
   ✔ add redux persistance/hydrate @done(20-02-22 21:03)
   ✔ fix edit year @done(20-02-22 22:05)
-  ☐ add simple status notofication
+  ✔ add simple status notofication @done(20-02-22 23:58)
   ☐ Add some testing
   ☐ Oprionally ad cloud function to persist history.
   ☐ cleanup unused packages
