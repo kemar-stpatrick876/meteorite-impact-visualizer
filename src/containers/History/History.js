@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   const { history } = state;
   return { history };
 };
-function History(props) {
+export function History(props) {
   const { history } = props;
   const formatDataColumn = (field, data) => {
     const displayValue = field && field === 'year' ? formattedDate(data) : data;
@@ -23,6 +23,7 @@ function History(props) {
     </tr>
   );
   if (history.length > 0) {
+    console.log(history);
     bodyContent = history.map(record => {
       const { id, timestamp, original, updated, field } = record;
       return (

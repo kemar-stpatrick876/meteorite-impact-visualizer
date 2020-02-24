@@ -23,6 +23,8 @@ export const addEditHistoryMiddleware = ({ dispatch, getState }) => {
             updated: value,
             field: key
           };
+          console.log(addHistoryRecord(record));
+
           dispatch(addHistoryRecord(record));
         });
       }

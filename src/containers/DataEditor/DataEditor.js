@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   doPutMeteoriteData: data => dispatch(putMeteoriteData(data))
 });
 
-class DataEditor extends Component {
+export class DataEditor extends Component {
   constructor(props) {
     super(props);
 
@@ -81,7 +81,7 @@ class DataEditor extends Component {
     this.setState({ meteorite: { ...meteorite, year: formattedDate(d) } });
   }
 
-  onKeyDown = e => {
+  onYearKeyDown = e => {
     e.preventDefault();
   };
 
@@ -234,7 +234,7 @@ class DataEditor extends Component {
                 value={year}
                 viewDate={Datetime.moment(year)}
                 onChange={this.onYearFieldChange}
-                inputProps={{ onKeyDown: this.onKeyDown }}
+                inputProps={{ onKeyDown: this.onYearKeyDown }}
                 closeOnSelect
                 isValidDate={this.isValidDate}
               />
@@ -274,6 +274,7 @@ class DataEditor extends Component {
           <div className="editor-form__actions">
             <button
               type="button"
+              id="cancelBtn"
               className="btn secondary"
               onClick={this.goBackToMap}
             >
@@ -281,6 +282,7 @@ class DataEditor extends Component {
             </button>
             <button
               type="button"
+              id="resetBtn"
               className="btn"
               onClick={this.resetToOriginal}
             >
@@ -288,6 +290,7 @@ class DataEditor extends Component {
             </button>
             <button
               type="submit"
+              id="submitBtn"
               className="btn"
               disabled={!validateForm(errors)}
             >
