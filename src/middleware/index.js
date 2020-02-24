@@ -3,6 +3,10 @@ import forOwn from 'lodash/forOwn';
 import { PUT_METEORITE_DATA } from '../constants';
 import { addHistoryRecord } from '../actions';
 
+/**
+ * Add history records when meteorite data is updated in state
+ * @param {*} param0
+ */
 export const addEditHistoryMiddleware = ({ dispatch, getState }) => {
   return next => {
     return action => {

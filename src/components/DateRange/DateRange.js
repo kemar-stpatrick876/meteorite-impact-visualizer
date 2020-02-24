@@ -32,10 +32,16 @@ export default class DateRange extends Component {
     });
   }
 
+  /**
+   * Not allowing keyboard input on date picker, for simplicity.
+   */
   onKeyDown = e => {
     e.preventDefault();
   };
 
+  /**
+   * Callback that enables/disables year options in date pickers
+   */
   isValidDate(currentDate, id) {
     const { startDate, endDate } = this.state;
     if (id === 'startDate') {

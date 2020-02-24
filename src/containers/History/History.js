@@ -15,6 +15,10 @@ export function History(props) {
     const displayValue = field && field === 'year' ? formattedDate(data) : data;
     return `${field} => ${displayValue}`;
   };
+
+  /**
+   * show no record row
+   */
   let bodyContent = (
     <tr className="history-table__row history-table__row--no-records">
       <td colSpan="4">
@@ -22,8 +26,11 @@ export function History(props) {
       </td>
     </tr>
   );
+
+  /**
+   * shows available records rows
+   */
   if (history.length > 0) {
-    console.log(history);
     bodyContent = history.map(record => {
       const { id, timestamp, original, updated, field } = record;
       return (
@@ -40,6 +47,7 @@ export function History(props) {
       );
     });
   }
+
   return (
     <div className="App__page App__page--history">
       <div className="App__page__title">History</div>

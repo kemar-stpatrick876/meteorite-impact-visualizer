@@ -20,10 +20,9 @@ export class DataEditor extends Component {
     super(props);
 
     const {
-      location: {
-        state: { info }
-      }
+      location: { state: { info = {}, fromPopup } = {} }
     } = this.props;
+
     const {
       name,
       nametype,
@@ -36,6 +35,7 @@ export class DataEditor extends Component {
     } = info;
 
     this.state = {
+      fromPopup,
       meteorite: {
         name,
         recclass,
@@ -57,6 +57,23 @@ export class DataEditor extends Component {
     this.resetToOriginal = this.resetToOriginal.bind(this);
   }
 
+  /**
+   * Since i am expecting data passed in router state from the popup,
+   * not rendering page if not navigated  to from a popup;
+   */
+  static getDerivedStateFromProps(props, state) {
+    const { history } = props;
+    const { fromPopup } = state;
+    if (!fromPopup) {
+      history.push('/');
+    }
+    return state;
+  }
+
+  /**
+   * handle field change by validating field and updating state
+   * @param {Event} e
+   */
   onFormFieldChange(e) {
     const {
       target: { id, value }
@@ -74,6 +91,11 @@ export class DataEditor extends Component {
     this.setState({ errors, meteorite });
   }
 
+  /**
+   * Datetime onChange passes a moment date object not an d Event object so handling this fields
+   * onchange separately
+   * @param {} momentDate
+   */
   onYearFieldChange(momentDate) {
     const { meteorite } = this.state;
 
@@ -81,10 +103,17 @@ export class DataEditor extends Component {
     this.setState({ meteorite: { ...meteorite, year: formattedDate(d) } });
   }
 
+  /**
+   * Not allowing keyboard input on date picker, for simplicity.
+   */
   onYearKeyDown = e => {
     e.preventDefault();
   };
 
+  /**
+   * Submit change to meteorite data
+   * @param {Event} e
+   */
   onFormSubmit(e) {
     e.preventDefault();
 
@@ -113,12 +142,18 @@ export class DataEditor extends Component {
     }
   }
 
+  /**
+   * Formats year field to format to original format
+   */
   cleanDataForComparison = data => {
     const dataCopy = { ...data };
     dataCopy.year = moment(data.year).format();
     return dataCopy;
   };
 
+  /**
+   * check to see which fields were updated on meteorite data
+   */
   getUpdatedFields = (dataFromPopup, dataAfterSubmit) =>
     reduce(
       dataFromPopup,
@@ -127,14 +162,23 @@ export class DataEditor extends Component {
       []
     );
 
+  /**
+   * Callback that enables/disables year options in date picker
+   */
   isValidDate = currentDate =>
     moment(currentDate).isSameOrBefore(new Date(), 'year');
 
+  /**
+   * navigate back to map via cancel button click
+   */
   goBackToMap() {
     const { history } = this.props;
     history.goBack();
   }
 
+  /**
+   * reset button click handler, resets form values to original state passed form popup.
+   */
   resetToOriginal() {
     const {
       location: {
@@ -212,6 +256,7 @@ export class DataEditor extends Component {
             <input
               type="number"
               id="mass"
+              step="any"
               min="1"
               value={mass}
               onChange={this.onFormFieldChange}

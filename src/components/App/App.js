@@ -10,8 +10,8 @@ import 'react-notifications-component/dist/theme.css';
 import './App.scss';
 import { Header } from '../Header';
 import ImpactMap from '../ImpactMap/ImpactMap';
-import { History } from '../../containers/History/History';
-import { DataEditor } from '../../containers/DataEditor/DataEditor';
+import HistoryPage from '../../containers/History/History';
+import DataEditorPage from '../../containers/DataEditor/DataEditor';
 
 const RouteNotAvailable = ({ location }) => (
   <div className="App__page App__page--not-available">
@@ -30,8 +30,8 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/map" />} />
           <Route path="/map" exact component={ImpactMap} />
-          <Route path="/history" exact component={History} />
-          <Route path="/edit/meteorite/:id" component={DataEditor} />
+          <Route path="/history" exact component={HistoryPage} />
+          <Route path="/edit/meteorite/:id" component={DataEditorPage} />
           <Route component={RouteNotAvailable} />
         </Switch>
       </Router>

@@ -8,6 +8,10 @@ import { formattedDate } from '../../utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 const info = MOCK_DATA[0];
+const history = {
+  goBack: jest.fn(),
+  push: jest.fn()
+};
 const location = {
   state: {
     info
@@ -26,7 +30,10 @@ const {
 describe('DataEditor.js', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<DataEditor location={location} />);
+    wrapper = shallow(<DataEditor location={location} history={history} />);
+  });
+  afterEach(() => {
+    history.goBack.mockClear();
   });
   test('should render', () => {
     expect(wrapper.exists()).toBe(true);
@@ -44,7 +51,9 @@ describe('DataEditor.js', () => {
   });
 
   test('Should reset state/form', () => {
-    const component = mount(<DataEditor location={location} />);
+    const component = mount(
+      <DataEditor location={location} history={history} />
+    );
     const input = component.find('#name');
     const newName = 'my new meteorite name';
 
@@ -58,12 +67,11 @@ describe('DataEditor.js', () => {
 
   test('should submit meteorite data edit', () => {
     const mockDispatchProp = jest.fn();
-    const goBack = jest.fn();
 
     const component = mount(
       <DataEditor
         location={location}
-        history={{ goBack }}
+        history={history}
         doPutMeteoriteData={mockDispatchProp}
       />
     );
@@ -89,17 +97,16 @@ describe('DataEditor.js', () => {
       id: '1'
     });
 
-    expect(goBack.mock.calls.length).toBe(1);
+    expect(history.goBack.mock.calls.length).toBe(1);
   });
 
   test('should not submit meteorite data if not changes were made', () => {
     const mockDispatchProp = jest.fn();
-    const goBack = jest.fn();
 
     const component = mount(
       <DataEditor
         location={location}
-        history={{ goBack }}
+        history={history}
         doPutMeteoriteData={mockDispatchProp}
       />
     );
@@ -108,11 +115,13 @@ describe('DataEditor.js', () => {
     component.find('form.editor-form').simulate('submit');
     expect(mockDispatchProp.mock.calls.length).toBe(0);
 
-    expect(goBack.mock.calls.length).toBe(1);
+    expect(history.goBack.mock.calls.length).toBe(1);
   });
 
   test('should handle year field changes', () => {
-    const component = mount(<DataEditor location={location} />);
+    const component = mount(
+      <DataEditor location={location} history={history} />
+    );
 
     expect(component.instance().state.meteorite.year).toBe('1880-01-01');
 

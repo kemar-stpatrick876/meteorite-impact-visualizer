@@ -11,7 +11,8 @@ export const initialState = {
     start: '2010-01-01',
     end: formattedDate()
   },
-  history: []
+  history: [],
+  displayedMeteorites: []
 };
 
 function rootReducer(state = initialState, action) {

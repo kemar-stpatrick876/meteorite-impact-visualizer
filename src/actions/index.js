@@ -21,6 +21,9 @@ export const fetchMeteorites = meteorites => {
   };
 };
 
+/**
+ * fetch meteorite data from api
+ */
 export const fetchAllMeteorites = () => {
   return dispatch => {
     return Axios.get(API_ENDPOINT)

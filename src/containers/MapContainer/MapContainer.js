@@ -43,13 +43,15 @@ export class MapContainer extends Component {
     doSetDisplayRange({ ...dateRange });
   }
 
+  // TODO:  can be moved to redux
+  /**
+   * Filter Meteorites in between selected date range
+   * @param {any[]} items
+   */
   dateRangeSeries(items) {
     const {
       displayRange: { start, end }
     } = this.props;
-
-    // console.log('date range called ', start, end, this.props);
-
     return items.filter(item => moment(item.year).isBetween(start, end));
   }
 
