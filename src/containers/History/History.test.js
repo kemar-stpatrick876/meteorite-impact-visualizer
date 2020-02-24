@@ -3,15 +3,6 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import moment from 'moment';
 import { History } from './History';
-import { formattedDate } from '../../utils';
-
-const initialState = {
-  displayRange: {
-    start: '2010-01-01',
-    end: formattedDate()
-  },
-  history: []
-};
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -31,7 +22,7 @@ describe('History.js', () => {
       wrapper.text().includes('There are currently no history records')
     ).toBe(true);
   });
-  test('should render table without record', () => {
+  test('should render table with records', () => {
     const history = [
       {
         timestamp: '2020-02-23T22:30:46.348Z',
