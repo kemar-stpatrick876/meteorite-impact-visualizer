@@ -11,9 +11,7 @@ import {
 } from '../constants';
 
 export function setDisplayRange(payload) {
-  const ret = { type: SET_DISPLAY_RANGE, payload };
-  console.log(ret);
-  return ret;
+  return { type: SET_DISPLAY_RANGE, payload };
 }
 
 export const fetchMeteorites = meteorites => {
