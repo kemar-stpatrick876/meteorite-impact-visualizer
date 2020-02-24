@@ -10,8 +10,8 @@ import 'react-notifications-component/dist/theme.css';
 import './App.scss';
 import { Header } from '../Header';
 import ImpactMap from '../ImpactMap/ImpactMap';
-import History from '../../containers/History/History';
-import DataEditor from '../../containers/DataEditor/DataEditor';
+import { History } from '../../containers/History/History';
+import { DataEditor } from '../../containers/DataEditor/DataEditor';
 
 const RouteNotAvailable = ({ location }) => (
   <div className="App__page App__page--not-available">

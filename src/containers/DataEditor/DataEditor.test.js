@@ -56,18 +56,6 @@ describe('DataEditor.js', () => {
     expect(input.prop('value')).toEqual(originalName);
   });
 
-  test.skip('should handle year field change', () => {
-    const component = mount(<DataEditor location={location} />);
-    const spy = jest.spyOn(component.instance(), 'onYearFieldChange');
-
-    const input = component.find('#year');
-    const newYearVal = moment().subtract(3, year);
-
-    input.instance().value = newYearVal;
-    input.simulate('change', newYearVal);
-    expect(spy).toHaveBeenCalled();
-  });
-
   test('should submit meteorite data edit', () => {
     const mockDispatchProp = jest.fn();
     const goBack = jest.fn();

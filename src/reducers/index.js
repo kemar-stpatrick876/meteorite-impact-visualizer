@@ -6,7 +6,7 @@ import {
   ADD_HISTORY_RECORD
 } from '../constants';
 
-const initialState = {
+export const initialState = {
   displayRange: {
     start: '2010-01-01',
     end: formattedDate()
@@ -34,7 +34,9 @@ function rootReducer(state = initialState, action) {
         if (meteorite.id !== data.id) return meteorite;
         return { ...meteorite, ...data };
       });
-      return { ...state, meteorites };
+      const ret = { ...state, meteorites };
+
+      return ret;
     }
 
     case ADD_HISTORY_RECORD: {

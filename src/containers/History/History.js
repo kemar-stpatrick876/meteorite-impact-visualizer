@@ -23,6 +23,7 @@ export function History(props) {
     </tr>
   );
   if (history.length > 0) {
+    console.log(history);
     bodyContent = history.map(record => {
       const { id, timestamp, original, updated, field } = record;
       return (

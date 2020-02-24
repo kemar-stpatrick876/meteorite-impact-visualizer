@@ -1,18 +1,14 @@
 import React from 'react';
-import { render, getByText } from '@testing-library/react';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 
-describe('<App/>', () => {
-  test.skip('should navigate to app pages', async () => {
-    render(<App />);
+Enzyme.configure({ adapter: new Adapter() });
 
-    const container = document.querySelector('.App__page');
-    const navContainer = document.querySelector('.Header__nav');
-    // const mapPageTitle = getByText(/Impact Map/i);
+describe('App.js', () => {
+  const wrapper = shallow(<App />);
 
-    expect(getByText(container, /Impact Map/i)).toBeInTheDocument();
-    getByText(navContainer, /History/i).click();
-    // await expect(getByText(container, /History/i)).toBeInTheDocument();
-    // expect(historyTitle).not.toBeInTheDocument();
+  test('should render', () => {
+    expect(wrapper.exists()).toBe(true);
   });
 });
