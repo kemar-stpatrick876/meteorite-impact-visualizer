@@ -6,7 +6,7 @@ import {
   PUT_METEORITE_DATA
 } from '../constants';
 
-describe.only('actions', () => {
+describe('actions', () => {
   test('setDisplayRange ', () => {
     const payload = { payload: { start: '2015-01-01', end: '2020-01-01' } };
     expect(setDisplayRange(payload)).toStrictEqual({
