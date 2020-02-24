@@ -2,7 +2,7 @@ import { addEditHistoryMiddleware } from './index';
 import { PUT_METEORITE_DATA, MOCK_DATA } from '../constants';
 
 describe('middlewares', () => {
-  it('should pass the intercepted action to next', () => {
+  it('should add history record on PUT_METEORITE_DATA action call', () => {
     const nextArgs = [];
     const fakeDispatch = jest.fn();
     const fakeGetState = jest.fn();
