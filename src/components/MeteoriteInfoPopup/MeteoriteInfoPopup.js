@@ -1,6 +1,6 @@
 import React from 'react';
-import './MeteoriteInfoPopup.scss';
 import { Link } from 'react-router-dom';
+import './MeteoriteInfoPopup.scss';
 import { formattedDate } from '../../utils';
 
 export default function MeteoriteInfoPopup(props) {
@@ -20,6 +20,10 @@ export default function MeteoriteInfoPopup(props) {
     <div className="MeteoriteInfoPopup">
       <div className="MeteoriteInfoPopup__header">{name}</div>
       <div className="MeteoriteInfoPopup__body">
+        <div className="info-row">
+          <span>id: </span>
+          <span>{id}</span>
+        </div>
         <div className="info-row">
           <span>Rec class: </span>
           <span>{recclass}</span>

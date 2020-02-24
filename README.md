@@ -1,9 +1,5 @@
 # Meteorite Impact Visualizer
 
-## Live demo
-
-hosted at [https://meteorite-impact-visualizer.now.sh/](https://meteorite-impact-visualizer.now.sh/)
-
 //===============================================================//
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

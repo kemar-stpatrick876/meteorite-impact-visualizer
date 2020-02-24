@@ -186,6 +186,7 @@ export class DataEditor extends Component {
       }
     } = this.props;
     const { state: meteorite } = this;
+    dataFromPopup.year = formattedDate(dataFromPopup.year);
     this.setState({
       meteorite: { ...meteorite, ...dataFromPopup },
       errors: { name: '' }
